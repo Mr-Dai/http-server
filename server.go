@@ -17,16 +17,20 @@ import (
 var logger = log.NewLogger(log.INFO, "http-server", "")
 
 var enableCache bool
+var maxAge int
 var enableList bool
 var port int
 var dir string
 
 func main() {
 	// Initialize
-	flag.BoolVar(&enableCache, "cache", false, "enable HTTP caching")
-	flag.BoolVar(&enableList, "list", false, "enable listing on directory when index.html is missed")
+	flag.StringVar(&dir, "dir", "", "path of directory to server, default to be the current working directory")
 	flag.IntVar(&port, "port", 8080, "specify the port number to listen on")
-	flag.StringVar(&dir, "dir", "", "path of directory to server, default to be current working directory")
+
+	flag.BoolVar(&enableCache, "cache", false, "enable HTTP cache support")
+	flag.IntVar(&maxAge, "maxAge", -1, "`max-age` field for `Cache-Control` header. Used only when cache support is enabled")
+
+	flag.BoolVar(&enableList, "list", false, "enable listing on directory when index.html is missed")
 	flag.Parse()
 
 	if dir == "" {
@@ -106,6 +110,13 @@ func handleRequestForFile(w http.ResponseWriter, req *http.Request, path string,
 				logger.Debugf("Received `If-Modified-Since` %s is before %s", imsStr, fileInfo.ModTime())
 			}
 		}
+		if maxAge > 0 {
+			w.Header().Add("Cache-Control", fmt.Sprintf("max-age=%d", maxAge))
+		} else {
+			w.Header().Add("Cache-Control", "no-cache")
+		}
+	} else { // Disallow clients to cache the response
+		w.Header().Add("Cache-Control", "no-store")
 	}
 	_, err = io.Copy(w, file)
 	if err != nil {

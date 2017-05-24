@@ -11,7 +11,7 @@ Use `go build` or `go install` to build or install the program.
 ## Future Tasks
 
 - [x] Support for common file types(`text/html`, `text/json`, ...)
-- [ ] Support for HTTP cache(`ETag`, `Cache-Control`, 
+- [x] Full support for HTTP cache(`Cache-Control`) 
       Refer to [this](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching))
 - [ ] Implement full-fledged log framework. (mimic [log4j](http://logging.apache.org/log4j/2.x/index.html))
 - [ ] List directory using default HTML template
@@ -28,6 +28,6 @@ Use `go build` or `go install` to build or install the program.
 
 ## Side Tasks
 
+- [ ] Refactor the log framework to use goroutines and channels to implement Producer-Consumer pattern.
 - [ ] Write benchmark tests to compare the performance of my log framework and other popular log framework,
       e.g. [zap](https://github.com/uber-go/zap)
-- [ ] Refactor the log framework to use goroutines and channels to implement Producer-Consumer pattern.
