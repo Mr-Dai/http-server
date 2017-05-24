@@ -10,11 +10,11 @@ import (
 
 	"time"
 
-	log "github.com/mr-dai/static-server/log"
-	mime "github.com/mr-dai/static-server/mime"
+	log "github.com/mr-dai/http-server/log"
+	mime "github.com/mr-dai/http-server/mime"
 )
 
-var logger = log.NewLogger(log.INFO, "static-server", "")
+var logger = log.NewLogger(log.INFO, "http-server", "")
 
 var enableCache bool
 var enableList bool

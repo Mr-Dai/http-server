@@ -1,4 +1,4 @@
-# static-server
+# http-server
 
 Static HTTP server in Golang.
 
