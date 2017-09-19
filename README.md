@@ -11,12 +11,11 @@ Use `go build` or `go install` to build or install the program.
 ## Future Tasks
 
 - [x] Support for common file types(`text/html`, `text/json`, ...)
-- [x] Full support for HTTP cache(`Cache-Control`) 
-      Refer to [this](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching))
-- [ ] Implement full-fledged log framework. (mimic [log4j](http://logging.apache.org/log4j/2.x/index.html))
+- [x] Full support for HTTP cache (`If-Modified-Since`, `Last-Modified`, `Cache-Control`)
 - [ ] List directory using default HTML template
 - [ ] Write `Makefile`, make sure it can be easilly installed
 - [ ] Add test cases
+- [ ] Add doc comments
 - [ ] Integrate with Travis CI and Codecov.io.
 - [ ] Release version 0.1
 - [ ] Support for GZip
@@ -28,6 +27,6 @@ Use `go build` or `go install` to build or install the program.
 
 ## Side Tasks
 
-- [ ] Refactor the log framework to use goroutines and channels to implement Producer-Consumer pattern.
-- [ ] Write benchmark tests to compare the performance of my log framework and other popular log framework,
-      e.g. [zap](https://github.com/uber-go/zap)
+- [ ] Color output for `log`.
+- [ ] Implement native in-memory cache
+- [ ] Implement `CacheManager` for cache using other source, e.g. Redis.

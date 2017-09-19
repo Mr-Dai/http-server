@@ -4,17 +4,21 @@ import (
 	"net/http"
 )
 
+// ResponseWriterWrapper wraps an `http.ResponseWriter`. ResponseWriterWrapper is
+// responsible for recording response length when its `Write` method is invoked.
 type ResponseWriterWrapper struct {
 	wrapped *http.ResponseWriter
 	length  int
 	code    int
 }
 
+// Wrap wraps the given `http.ResponseWriter` in a `ResponseWriterWrapper`.
 func Wrap(w *http.ResponseWriter) ResponseWriterWrapper {
 	return ResponseWriterWrapper{wrapped: w, length: 0, code: 0}
 }
 
-func (w *ResponseWriterWrapper) Header() http.Header {
+// Header returns the `http.Header` of the underlying `http.RespsoneWriter`
+func (w ResponseWriterWrapper) Header() http.Header {
 	return (*w.wrapped).Header()
 }
 
