@@ -104,8 +104,14 @@ func handleRequestForDirectory(w http.ResponseWriter, req *http.Request, path st
 		return
 	}
 	defer d.Close()
+	names, err := d.Readdirnames(0)
+	if err != nil {
+		handleFileError(err, path, w)
+		return
+	}
 
-	// TODO List the directory using default template
+	// List the directory using default template
+	listDir(req.RequestURI, names, w)
 }
 
 // handleFileError handles the given error and returns an appropriate HTTP response.
