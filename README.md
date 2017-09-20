@@ -13,9 +13,9 @@ Use `go build` or `go install` to build or install the program.
 - [x] Support for common file types(`text/html`, `text/json`, ...)
 - [x] Full support for HTTP cache (`If-Modified-Since`, `Last-Modified`, `Cache-Control`)
 - [x] List directory using default HTML template
-- [ ] Write `Makefile`, make sure it can be easilly installed
-- [ ] Add test cases
+- [x] Write `Makefile`, make sure it can be easilly installed
 - [ ] Add doc comments
+- [ ] Add test cases
 - [ ] Integrate with Travis CI and Codecov.io.
 - [ ] Release version 0.1
 - [ ] Color output for `log`.
