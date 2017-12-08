@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	log "github.com/mr-dai/http-server/log"
+	log "github.com/Mr-Dai/http-server/log"
 )
 
 const version = "0.1"

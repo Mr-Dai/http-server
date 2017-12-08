@@ -22,11 +22,11 @@ func GetMimeByExtension(ext string) (result string) {
 // the given file name. Returns `application/octet-stream` if no corresponding MIME
 // type can be found.
 func GetMimeByFilename(filename string) string {
-	comps := strings.SplitN(filename, ".", 2)
+	comps := strings.Split(filename, ".")
 	if len(comps) < 2 {
 		return defaultMime
 	}
-	return GetMimeByExtension(comps[1])
+	return GetMimeByExtension(comps[len(comps)-1])
 }
 
 // Initialize the MIME lookup table
