@@ -9,6 +9,7 @@ import (
 	"time"
 
 	mime "github.com/mr-dai/http-server/mime"
+	"net/url"
 )
 
 // handleRequest handles all incoming HTTP requests.
@@ -24,7 +25,8 @@ func handleRequestWrapped(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	path := filepath.Join(dir, req.RequestURI)
+	path, _ := url.QueryUnescape(req.RequestURI)
+	path = filepath.Join(dir, path)
 	logger.Tracef("Checking %s", path)
 	fileInfo, err := os.Stat(path)
 	if os.IsNotExist(err) { // Append `.html` suffix and try again
